@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
+
   },
   "keywords": [],
   "author": "",
@@ -28,5 +31,13 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2"
-  }
+  },
+
+  "lint-staged": {
+  "*.{js,ts,jsx,tsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ]
+}
+
 }
