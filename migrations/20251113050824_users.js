@@ -3,7 +3,6 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-// eslint-disable-next-line no-undef
 exports.up = function(knex) {
   return knex.schema.createTable('users', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
