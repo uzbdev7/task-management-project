@@ -9,7 +9,8 @@
     "dev": "nodemon index.js",
     "prepare": "husky",
     "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "rollback": "knex migrate:rollback",
+    "format": "prettier --write \"src/**/*.js\""
   },
   "keywords": [],
   "author": "",

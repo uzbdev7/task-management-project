@@ -14,4 +14,3 @@ export const generateRefreshToken = (user) => {
     expiresIn: process.env.JWT_REFRESH_EXPIRES,
   });
 };
-

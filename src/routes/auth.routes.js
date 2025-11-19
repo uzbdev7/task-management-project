@@ -13,11 +13,11 @@ import { registerSchema, loginSchema, otpSchema } from '../validations/auth.vali
 
 const router = Router();
 
-router.post('/signUp', validate(registerSchema,'body'), signUp);
+router.post('/signUp', validate(registerSchema, 'body'), signUp);
 
-router.post('/verify', validate(otpSchema,'body'), verifyOtp);
+router.post('/verify', validate(otpSchema, 'body'), verifyOtp);
 
-router.post('/login', validate(loginSchema,'body'), login);
+router.post('/login', validate(loginSchema, 'body'), login);
 
 router.get('/getMe', verifyToken, getMe);
 
