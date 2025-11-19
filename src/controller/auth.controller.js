@@ -8,7 +8,6 @@ import { sendVerificationCode } from '../services/email.service.js';
 
 export const signUp = async (req, res, next) => {
   try {
-
     const { email, username, password, role } = req.body;
 
     const existing = await db('users')
@@ -17,9 +16,7 @@ export const signUp = async (req, res, next) => {
       .select('*');
 
     if (existing.length > 0) {
-      return res
-        .status(400)
-        .json({ message: 'Username yoki Email allaqachon mavjud!' });
+      return res.status(400).json({ message: 'Username yoki Email allaqachon mavjud!' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -49,7 +46,7 @@ export const signUp = async (req, res, next) => {
 
       res.status(201).json({
         message: 'Muvafaqqiyatli yaratildi. OTP kod sizning emailingizga yuborildi.',
-        success:true,
+        success: true,
         data: newUser,
       });
     });
@@ -60,7 +57,6 @@ export const signUp = async (req, res, next) => {
 
 export const verifyOtp = async (req, res, next) => {
   try {
-
     const { email, otp } = req.body;
 
     const user = await db('users').where({ email, otp_code: otp }).first();
@@ -85,10 +81,7 @@ export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const user = await db('users')
-      .where('email', email)
-      .orWhere('username', email)
-      .first();
+    const user = await db('users').where('email', email).orWhere('username', email).first();
 
     if (!user) {
       return res.status(400).json({ message: 'User topilmadi!' });
@@ -121,7 +114,7 @@ export const login = async (req, res, next) => {
       .status(200)
       .json({
         message: 'Login muvaffaqiyatli!',
-        success:true,
+        success: true,
         data: { accessToken, refreshToken },
       });
   } catch (error) {
@@ -134,15 +127,7 @@ export const getMe = async (req, res, next) => {
     const userId = req.user.id;
 
     const user = await db('users')
-      .select(
-        'id',
-        'email',
-        'username',
-        'role',
-        'status',
-        'created_at',
-        'updated_at'
-      )
+      .select('id', 'email', 'username', 'role', 'status', 'created_at', 'updated_at')
       .where({ id: userId })
       .first();
 
@@ -152,7 +137,7 @@ export const getMe = async (req, res, next) => {
 
     res.status(200).json({
       message: 'Your profile',
-      success:true,
+      success: true,
       data: user,
     });
   } catch (error) {
@@ -167,7 +152,7 @@ export const logout = (req, res) => {
 
     res.status(200).json({
       message: 'Logout successful',
-      success:true
+      success: true,
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
@@ -207,7 +192,7 @@ export const refreshToken = async (req, res) => {
       .status(200)
       .json({
         message: 'Token refreshed',
-        success:true,
+        success: true,
         data: { accessToken, refreshToken },
       });
   } catch (error) {

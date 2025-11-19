@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import adminRouter from './auth.routes.js';
-import userRouter from './user.routes.js'
-import projectRouter from './project.routes.js'
-import taskRouter from './task.routes.js'
-import commentRouter from './comment.routes.js'
+import userRouter from './user.routes.js';
+import projectRouter from './project.routes.js';
+import taskRouter from './task.routes.js';
+import commentRouter from './comment.routes.js';
 const router = Router();
 
 router.use('/auth', adminRouter);

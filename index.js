@@ -12,8 +12,6 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/', mainRouter);
 
-console.log(process.env.GOOGLE_EMAIL, process.env.EMAIL_PASSWORD);
-
 app.listen(PORT, () => {
   console.log(`✅ Server ${PORT}-portda ishlayapti`);
 });
